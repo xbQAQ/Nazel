@@ -2,6 +2,7 @@
 #include <memory>
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace Nazel {
 	class NAZEL_API Log {
@@ -30,3 +31,5 @@ namespace Nazel {
 #define LOG_EDITOR_WARN(...)	      ::Nazel::Log::GetEditorLogger()->warn(__VA_ARGS__)
 #define LOG_EDITOR_ERROR(...)	      ::Nazel::Log::GetEditorLogger()->error(__VA_ARGS__)
 #define LOG_EDITOR_FATAL(...)	      ::Nazel::Log::GetEditorLogger()->fatal(__VA_ARGS__)
+
+
