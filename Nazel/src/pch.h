@@ -10,6 +10,9 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
+#include "Nazel/Log.h"
+
 #ifdef NZ_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif

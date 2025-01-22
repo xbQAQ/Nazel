@@ -9,6 +9,11 @@ workspace "Nazel"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
+include "Nazel/ThirdParty/GLFW"
+
 project "Nazel"
 	location "Nazel"
 	kind "SharedLib"
@@ -18,6 +23,9 @@ project "Nazel"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "pch.h"
+	pchsource "Nazel/src/pch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -26,7 +34,15 @@ project "Nazel"
 
 	includedirs
 	{
-		"%{prj.name}/ThirdParty/spdlog/include"
+		"%{prj.name}/ThirdParty/spdlog/include",
+		"%{prj.name}/src",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:Windows"
