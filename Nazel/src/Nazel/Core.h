@@ -9,4 +9,13 @@
 #error Nazel only supports Windows!
 #endif
 
+#ifdef NZ_ENABLE_ASSERTS
+#define NZ_ASSERT(x, ...) { if(!(x)) { NZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#define NZ_CORE_ASSERT(x, ...) { if(!(x)) { NZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+#define NZ_ASSERT(x, ...)
+#define NZ_CORE_ASSERT(x, ...)
+#endif
+
+
 #define BIT(x)(1 << x)
