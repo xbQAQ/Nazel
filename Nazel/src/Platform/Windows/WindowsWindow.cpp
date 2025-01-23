@@ -37,10 +37,13 @@ void WindowsWindow::Init(const WindowProps& props) {
 		s_GLFWInitialized = true;
 	}
 
+	// 创建窗口
 	m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
 
+	// 设置上下文
 	glfwMakeContextCurrent(m_Window);
-	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);	// 加载opengl函数
+	// 加载opengl函数
+	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);	
 	NZ_CORE_ASSERT(status, "Failed to initialize Glad!");
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 	SetVSync(true);

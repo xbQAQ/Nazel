@@ -5,3 +5,6 @@
 [submodule "Nazel/ThirdParty/GLFW"]
 	path = Nazel/ThirdParty/GLFW
 	url = https://github.com/xbQAQ/glfw
+[submodule "Nazel/ThirdParty/imgui"]
+	path = Nazel/ThirdParty/imgui
+	url = https://github.com/xbQAQ/imgui

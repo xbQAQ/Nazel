@@ -1,7 +1,9 @@
 # Directories
 .vs/
-.bin/
-.bin-int/
+*/bin/
+*/bin-int/
 
 # Files
 *.user
+.idea
+*.obj
