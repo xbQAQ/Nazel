@@ -13,9 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Nazel/ThirdParty/Glad/include"
+IncludeDir["ImGui"] = "Nazel/ThirdParty/imgui"
 
 include "Nazel/ThirdParty/GLFW"
 include "Nazel/ThirdParty/Glad"
+include "Nazel/ThirdParty/imgui"
 
 project "Nazel"
 	location "Nazel"
@@ -40,13 +42,15 @@ project "Nazel"
 		"%{prj.name}/ThirdParty/spdlog/include",
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 

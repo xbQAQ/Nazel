@@ -3,12 +3,15 @@
 
 #include <glad/glad.h>
 
-#define BIND_EVENT_FUNCTION(X) std::bind(&Application::X, this, std::placeholders::_1)
-
 namespace Nazel {
+
+#define BIND_EVENT_FUNCTION(X) std::bind(&Application::X, this, std::placeholders::_1)
+Application* Application::s_Instance = nullptr;
+
 Application::Application() {
 	m_Window = std::unique_ptr<Window>(Window::Create());
 	m_Window->SetEventCallback(BIND_EVENT_FUNCTION(OnEvent));
+	s_Instance = this;
 }
 
 Application::~Application() {
@@ -45,10 +48,12 @@ void Application::OnEvent(Event& e) {
 
 void Application::PushLayer(Layer* layer) {
 	m_LayerStack.PushLayer(layer);
+	layer->OnAttch();
 }
 
 void Application::PushOverlay(Layer* layer) {
 	m_LayerStack.PushOverlay(layer);
+	layer->OnAttch();
 }
 
 bool Application::OnWindowClose(WindowCloseEvent& e) {
