@@ -37,6 +37,12 @@
     <ClInclude Include="src\Nazel\Events\MouseEvent.h">
       <Filter>Nazel\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nazel\Layer.h">
+      <Filter>Nazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nazel\LayerStack.h">
+      <Filter>Nazel</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nazel\Log.h">
       <Filter>Nazel</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nazel\Application.cpp">
+      <Filter>Nazel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nazel\Layer.cpp">
+      <Filter>Nazel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nazel\LayerStack.cpp">
       <Filter>Nazel</Filter>
     </ClCompile>
     <ClCompile Include="src\Nazel\Log.cpp">

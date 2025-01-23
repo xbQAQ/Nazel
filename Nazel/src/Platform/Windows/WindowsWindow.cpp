@@ -5,6 +5,7 @@
 #include "Nazel/Events/MouseEvent.h"
 #include "Nazel/Events/KeyEvent.h"
 
+
 namespace Nazel {
 static bool s_GLFWInitialized = false;
 
@@ -39,6 +40,8 @@ void WindowsWindow::Init(const WindowProps& props) {
 	m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
 
 	glfwMakeContextCurrent(m_Window);
+	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);	// ¼ÓÔØopenglº¯Êý
+	NZ_CORE_ASSERT(status, "Failed to initialize Glad!");
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 	SetVSync(true);
 

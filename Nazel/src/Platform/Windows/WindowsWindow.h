@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Nazel/Window.h"
-#include <GLFW/glfw3.h>
+
+#include <glad/glad.h>	//glad 获取一堆 glxxx 函数的函数指针
+#include <GLFW/glfw3.h> //glfw 管理操作系统的窗口管理器给到的 framebuffer
+
+struct GLFWwindow;
 
 namespace Nazel {
 class WindowsWindow : public Window
