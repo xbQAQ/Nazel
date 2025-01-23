@@ -12,7 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
+IncludeDir["Glad"] = "Nazel/ThirdParty/Glad/include"
+
 include "Nazel/ThirdParty/GLFW"
+include "Nazel/ThirdParty/Glad"
 
 project "Nazel"
 	location "Nazel"
@@ -36,12 +39,14 @@ project "Nazel"
 	{
 		"%{prj.name}/ThirdParty/spdlog/include",
 		"%{prj.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -53,7 +58,8 @@ project "Nazel"
 		defines
 		{
 			"NZ_PLATFORM_WINDOWS",
-			"NZ_BUILD_DLL"
+			"NZ_BUILD_DLL",
+			"GLAD_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -63,14 +69,17 @@ project "Nazel"
 
 	filter "configurations:Debug"
 		defines "NZ_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "NZ_Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NZ_Dist"
+		buildoptions "/MD"
 		optimize "On"
 
 
@@ -112,12 +121,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "NZ_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "NZ_Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NZ_Dist"
+		buildoptions "/MD"
 		optimize "On"
