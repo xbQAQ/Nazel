@@ -19,3 +19,4 @@
 
 
 #define BIT(x)(1 << x)
+#define BIND_FUNCTION(X) std::bind(&X, this, std::placeholders::_1)

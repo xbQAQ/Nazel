@@ -18,7 +18,7 @@ class Sandbox : public Nazel::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		PushOverlay(new Nazel::ImGuiLayer());
 	}
 	~Sandbox() {}
