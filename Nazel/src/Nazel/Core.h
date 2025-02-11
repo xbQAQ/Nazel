@@ -9,6 +9,10 @@
 #error Nazel only supports Windows!
 #endif
 
+#ifdef NZ_DEBUG
+#define NZ_ENABLE_ASSERTS
+#endif // NZ_DEBUG
+
 #ifdef NZ_ENABLE_ASSERTS
 #define NZ_ASSERT(x, ...) { if(!(x)) { LOG_EDITOR_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #define NZ_CORE_ASSERT(x, ...) { if(!(x)) { LOG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
