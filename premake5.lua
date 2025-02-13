@@ -18,6 +18,8 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Nazel/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "Nazel/ThirdParty/imgui"
+IncludeDir["glm"] = "Nazel/ThirdParty/glm"
+
 
 include "Nazel/ThirdParty/GLFW"
 include "Nazel/ThirdParty/Glad"
@@ -43,7 +45,10 @@ project "Nazel"		--Nazel项目
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		-- 可以不用包含hpp文件
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	-- 包含目录
@@ -53,7 +58,8 @@ project "Nazel"		--Nazel项目
 		"%{prj.name}/src",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -121,7 +127,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Nazel/ThirdParty/spdlog/include",
-		"Nazel/src"
+		"Nazel/src",
+		"%{IncludeDir.glm}"
 	}
 
 	filter "system:windows"

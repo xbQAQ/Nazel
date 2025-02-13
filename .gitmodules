@@ -8,3 +8,6 @@
 [submodule "Nazel/ThirdParty/imgui"]
 	path = Nazel/ThirdParty/imgui
 	url = https://github.com/xbQAQ/imgui
+[submodule "Nazel/ThirdParty/glm"]
+	path = Nazel/ThirdParty/glm
+	url = https://github.com/icaven/glm
