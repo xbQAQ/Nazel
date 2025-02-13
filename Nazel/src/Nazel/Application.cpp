@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Application.h"
+#include "Input.h"
 
 #include <glad/glad.h>
 
@@ -23,6 +24,9 @@ void Application::Run() {
 		glClear(GL_COLOR_BUFFER_BIT);
 		for (Layer* layer : m_LayerStack)
 			layer->OnUpdate();
+
+		auto [x, y] = Input::GetMousePosition();
+		//LOG_CORE_TRACE("({0}, {1})", x, y);
 
 		m_Window->OnUpdate();
 	}
