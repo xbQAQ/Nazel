@@ -128,7 +128,8 @@ project "Sandbox"
 	{
 		"Nazel/ThirdParty/spdlog/include",
 		"Nazel/src",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"Nazel/ThirdParty"
 	}
 
 	filter "system:windows"
