@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "Nazel/Events/ApplicationEvent.h"
 #include "Nazel/LayerStack.h"
+#include "Nazel/imgui/ImguiLayer.h"
 
 namespace Nazel {
 class NAZEL_API Application
@@ -25,6 +26,7 @@ private:
 	bool OnWindowClose(WindowCloseEvent& e); 
 private:
 	std::unique_ptr<Window> m_Window;
+	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;
 	LayerStack m_LayerStack;
 	static Application* s_Instance;
