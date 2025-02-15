@@ -13,9 +13,6 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\OpenGL">
-      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,12 @@
     <ClInclude Include="src\Nazel\Events\MouseEvent.h">
       <Filter>Nazel\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nazel\Input.h">
+      <Filter>Nazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nazel\KeyCodes.h">
+      <Filter>Nazel</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nazel\Layer.h">
       <Filter>Nazel</Filter>
     </ClInclude>
@@ -52,14 +55,17 @@
     <ClInclude Include="src\Nazel\Log.h">
       <Filter>Nazel</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nazel\MouseButtonCodes.h">
+      <Filter>Nazel</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nazel\Window.h">
       <Filter>Nazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Nazel\imgui\ImguiLayer.h">
       <Filter>Nazel\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>Platform\OpenGL</Filter>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
@@ -79,11 +85,14 @@
     <ClCompile Include="src\Nazel\Log.cpp">
       <Filter>Nazel</Filter>
     </ClCompile>
+    <ClCompile Include="src\Nazel\imgui\ImGuiBuild.cpp">
+      <Filter>Nazel\imgui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Nazel\imgui\ImguiLayer.cpp">
       <Filter>Nazel\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>Platform\OpenGL</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
