@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Core.h"
 #include "Events/Event.h"
 #include "Window.h"
@@ -32,7 +32,7 @@ private:
 	static Application* s_Instance;
 };
 
-// ¶¨ÒåÔÚClientÖÐ
+// å®šä¹‰åœ¨Clientä¸­
 Application* CreateApplication();
 }
 

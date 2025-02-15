@@ -1,4 +1,4 @@
-#include <Nazel.h>
+﻿#include <Nazel.h>
 #include "imgui/imgui.h"
 
 class ExampleLayer : public Nazel::Layer

@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Nazel/Window.h"
 
-#include <glad/glad.h>	//glad »ñÈ¡Ò»¶Ñ glxxx º¯ÊıµÄº¯ÊıÖ¸Õë
-#include <GLFW/glfw3.h> //glfw ¹ÜÀí²Ù×÷ÏµÍ³µÄ´°¿Ú¹ÜÀíÆ÷¸øµ½µÄ framebuffer
+#include <glad/glad.h>	//glad è·å–ä¸€å † glxxx å‡½æ•°çš„å‡½æ•°æŒ‡é’ˆ
+#include <GLFW/glfw3.h> //glfw ç®¡ç†æ“ä½œç³»ç»Ÿçš„çª—å£ç®¡ç†å™¨ç»™åˆ°çš„ framebuffer
 
 struct GLFWwindow;
 

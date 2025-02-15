@@ -27,12 +27,13 @@ include "Nazel/ThirdParty/imgui"
 
 project "Nazel"		--Nazel项目
 	location "Nazel"	--在sln所属文件夹下的Nazel文件夹
-	kind "SharedLib"	--dll动态库
+	-- kind "SharedLib"	--dll动态库
+	kind "StaticLib"	--lib库
 	language "C++"
 	buildoptions "/utf-8"
 	-- On:代码生成的运行库选项是MTD,静态链接MSVCRT.lib库;
 	-- Off:代码生成的运行库选项是MDD,动态链接MSVCRT.dll库;打包后的exe放到另一台电脑上若无这个dll会报错
-	staticruntime "Off"	
+	staticruntime "on"	
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")	-- 输出目录
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	-- 中间目录
@@ -70,10 +71,13 @@ project "Nazel"		--Nazel项目
 		"opengl32.lib"
 	}
 
+	defines{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
 	-- 如果是window系统
 	filter "system:Windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -92,7 +96,7 @@ project "Nazel"		--Nazel项目
 	filter "configurations:Debug"
 		defines "NZ_DEBUG"
 		runtime "Debug"
-		buildoptions "/MDd"
+		-- buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
@@ -111,9 +115,10 @@ project "Nazel"		--Nazel项目
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
+	cppdialect "C++17"
 	buildoptions "/utf-8"
 	language "C++"
-	staticruntime "Off"	
+	staticruntime "on"	
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -133,8 +138,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		links

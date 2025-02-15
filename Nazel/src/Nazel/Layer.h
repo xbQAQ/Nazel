@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Nazel/Core.h"
 #include "Nazel/Events/Event.h"

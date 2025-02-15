@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 // From glfw3.h
 #define NZ_MOUSE_BUTTON_1         0
 #define NZ_MOUSE_BUTTON_2         1
