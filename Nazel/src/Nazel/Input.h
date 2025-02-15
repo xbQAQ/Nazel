@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Nazel/Core.h"
 #include "utility"

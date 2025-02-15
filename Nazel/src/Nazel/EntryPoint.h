@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifdef NZ_PLATFORM_WINDOWS
 

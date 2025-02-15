@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <memory>
 #include "Core.h"
 #include "spdlog/spdlog.h"
@@ -7,18 +7,18 @@
 namespace Nazel {
 	class NAZEL_API Log {
 	public:
-		static void Init();// ³õÊ¼»¯
-		// ÏòÍâÌá¹©»ñÈ¡ÈÕÖ¾¶ÔÏó
+		static void Init();// åˆå§‹åŒ–
+		// å‘å¤–æä¾›è·å–æ—¥å¿—å¯¹è±¡
 		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return s_CoreLogger; }
 		inline static std::shared_ptr<spdlog::logger>& GetEditorLogger() { return s_EditorLogger; }
 	private:
-		static std::shared_ptr<spdlog::logger> s_CoreLogger;// NazelÏîÄ¿µÄÈÕÖ¾¶ÔÏó
-		static std::shared_ptr<spdlog::logger> s_EditorLogger;// SandboxÏîÄ¿µÄÈÕÖ¾¶ÔÏó
+		static std::shared_ptr<spdlog::logger> s_CoreLogger;// Nazelé¡¹ç›®çš„æ—¥å¿—å¯¹è±¡
+		static std::shared_ptr<spdlog::logger> s_EditorLogger;// Sandboxé¡¹ç›®çš„æ—¥å¿—å¯¹è±¡
 	};
 }
-
+ 
 // Core log macros
-// ...ÊÇ½ÓÊÜº¯Êı²ÎÊı°ü£¬__VA_ARGS__×ª·¢º¯Êı²ÎÊı°ü
+// ...æ˜¯æ¥å—å‡½æ•°å‚æ•°åŒ…ï¼Œ__VA_ARGS__è½¬å‘å‡½æ•°å‚æ•°åŒ…
 #define LOG_CORE_TRACE(...)    ::Nazel::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define LOG_CORE_INFO(...)     ::Nazel::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define LOG_CORE_WARN(...)     ::Nazel::Log::GetCoreLogger()->warn(__VA_ARGS__)

@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "WindowsWindow.h"
 
 #include "Nazel/Events/ApplicationEvent.h"
@@ -37,18 +37,18 @@ void WindowsWindow::Init(const WindowProps& props) {
 		s_GLFWInitialized = true;
 	}
 
-	// ´´½¨´°¿Ú
+	// åˆ›å»ºçª—å£
 	m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
 
-	// ÉèÖÃÉÏÏÂÎÄ
+	// è®¾ç½®ä¸Šä¸‹æ–‡
 	glfwMakeContextCurrent(m_Window);
-	// ¼ÓÔØopenglº¯Êı
+	// åŠ è½½openglå‡½æ•°
 	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);	
 	NZ_CORE_ASSERT(status, "Failed to initialize Glad!");
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 	SetVSync(true);
 
-	// ÉèÖÃglfw»Øµ÷º¯Êı
+	// è®¾ç½®glfwå›è°ƒå‡½æ•°
 
 	glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
 		WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
@@ -92,7 +92,7 @@ void WindowsWindow::Init(const WindowProps& props) {
 		}
 	});
 
-	// ÊäÈë×Ö·ûÊÂ¼ş
+	// è¾“å…¥å­—ç¬¦äº‹ä»¶
 	glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
 		WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
 

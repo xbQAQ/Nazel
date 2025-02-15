@@ -1,19 +1,19 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Nazel {
-	// ÓÉÓÚÕâÁ½ÊôĞÔÊÇ¾²Ì¬µÄ£¬µÃÔÚcppÀï¶¨Òå£¬²»È»±¨ÎŞ·¨½âÎöµÄÍâ²¿·ûºÅ´íÎó
+	// ç”±äºè¿™ä¸¤å±æ€§æ˜¯é™æ€çš„ï¼Œå¾—åœ¨cppé‡Œå®šä¹‰ï¼Œä¸ç„¶æŠ¥æ— æ³•è§£æçš„å¤–éƒ¨ç¬¦å·é”™è¯¯
 	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
 	std::shared_ptr<spdlog::logger> Log::s_EditorLogger;
 	void Log::Init()
 	{
-		// ×Ô¶¨ÒåÈÕÖ¾¸ñÊ½£º%^ÑÕÉ«ÆğÊ¼µã¡¢%TÊ±¼ä´Á(HH:MM:SS)¡¢%nÈÕÖ¾Ãû¡¢%@ÈÕÖ¾µÄÎÄ¼ş¼°ĞĞÊı %vÊµ¼ÊµÄÎÄ±¾¡¢%$ÑÕÉ«½áÊøµã
+		// è‡ªå®šä¹‰æ—¥å¿—æ ¼å¼ï¼š%^é¢œè‰²èµ·å§‹ç‚¹ã€%Tæ—¶é—´æˆ³(HH:MM:SS)ã€%næ—¥å¿—åã€%@æ—¥å¿—çš„æ–‡ä»¶åŠè¡Œæ•° %vå®é™…çš„æ–‡æœ¬ã€%$é¢œè‰²ç»“æŸç‚¹
 		spdlog::set_pattern("%^[%T] %n %@: %v%$");
-		s_CoreLogger = spdlog::stdout_color_mt("Nazel Core");// Nazel ¶ÔÓ¦×Ô¶¨Òå¸ñÊ½µÄ%n
+		s_CoreLogger = spdlog::stdout_color_mt("Nazel Core");// Nazel å¯¹åº”è‡ªå®šä¹‰æ ¼å¼çš„%n
 		s_CoreLogger->set_level(spdlog::level::trace);
 
-		s_EditorLogger = spdlog::stdout_color_mt("Nazel Editor");// APP ¶ÔÓ¦×Ô¶¨Òå¸ñÊ½µÄ%n
+		s_EditorLogger = spdlog::stdout_color_mt("Nazel Editor");// APP å¯¹åº”è‡ªå®šä¹‰æ ¼å¼çš„%n
 		s_EditorLogger->set_level(spdlog::level::trace);
 	}
 }
