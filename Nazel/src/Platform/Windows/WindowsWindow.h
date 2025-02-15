@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 #include "Nazel/Window.h"
+#include "Nazel/RenderAPI/GraphicsContext.h"
 
-#include <glad/glad.h>	//glad 获取一堆 glxxx 函数的函数指针
-#include <GLFW/glfw3.h> //glfw 管理操作系统的窗口管理器给到的 framebuffer
+#include <GLFW/glfw3.h> 
 
 struct GLFWwindow;
 
@@ -30,6 +30,7 @@ private:
 	virtual void Shutdown();
 private:
 	GLFWwindow* m_Window;
+	GraphicsContext* m_Context;;
 	struct WindowData
 	{
 		std::string Title;

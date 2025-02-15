@@ -5,6 +5,7 @@
 #include "Nazel/Events/MouseEvent.h"
 #include "Nazel/Events/KeyEvent.h"
 
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Nazel {
 static bool s_GLFWInitialized = false;
@@ -40,11 +41,14 @@ void WindowsWindow::Init(const WindowProps& props) {
 	// 创建窗口
 	m_Window = glfwCreateWindow(static_cast<int>(m_Data.Width), static_cast<int>(m_Data.Height), m_Data.Title.c_str(), nullptr, nullptr);
 
-	// 设置上下文
-	glfwMakeContextCurrent(m_Window);
-	// 加载opengl函数
-	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);	
-	NZ_CORE_ASSERT(status, "Failed to initialize Glad!");
+	m_Context = new OpenGLContext(m_Window);
+	m_Context->Init();
+
+	/*
+		设置窗口关联的用户数据指针。这里GLFW仅做存储，不做任何的特殊处理和应用。
+		window表示操作的窗口句柄。
+		pointer表示用户数据指针。
+	*/
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 	SetVSync(true);
 
