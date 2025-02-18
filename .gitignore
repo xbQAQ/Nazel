@@ -9,3 +9,5 @@
 *.obj
 /bin
 /bin-int
+/Nazel/ThirdParty/Glad/bin
+/Nazel/ThirdParty/Glad/bin-int
