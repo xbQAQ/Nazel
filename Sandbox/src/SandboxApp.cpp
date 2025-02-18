@@ -12,7 +12,7 @@ public:
 			LOG_EDITOR_TRACE("Tab key is pressed (poll)!");
 	}
 	virtual void OnImGuiRender() override {
-		LOG_EDITOR_TRACE("Hello");
+		//LOG_EDITOR_TRACE("Hello");
 		ImGui::Begin("Test");
 		ImGui::Text("Hello World");
 		ImGui::End();
