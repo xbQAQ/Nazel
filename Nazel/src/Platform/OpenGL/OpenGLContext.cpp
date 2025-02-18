@@ -16,6 +16,12 @@ void OpenGLContext::Init() {
 	// 获取显卡OpenGL函数定义的地址
 	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	NZ_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+	LOG_CORE_INFO("OpenGL Info:");
+	LOG_CORE_INFO("Vendor: {0}", (const char*)glGetString(GL_VENDOR));
+	LOG_CORE_INFO("GPU Name: {0}", (const char*)glGetString(GL_RENDERER));
+	LOG_CORE_INFO("Version: {0}", (const char*)glGetString(GL_VERSION));
+
 }
 void OpenGLContext::SwapBuffers() {
 	glfwSwapBuffers(m_WindowHandle);// 交换缓冲
