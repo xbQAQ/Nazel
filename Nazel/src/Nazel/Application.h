@@ -7,6 +7,7 @@
 #include "Nazel/Events/ApplicationEvent.h"
 #include "Nazel/LayerStack.h"
 #include "Nazel/imgui/ImguiLayer.h"
+#include "RenderAPI/Shader.h"
 
 namespace Nazel {
 class NAZEL_API Application
@@ -25,7 +26,8 @@ public:
 private:
 	bool OnWindowClose(WindowCloseEvent& e); 
 private:
-	uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+	uint32_t m_VertexArray, m_VertexBuffer, m_IndexBuffer, m_RendererID;
+	std::unique_ptr<Shader> m_Shader;
 	std::unique_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;
