@@ -1,16 +1,15 @@
-#pragma once
+﻿#pragma once
+#include "RenderCommand.h"
 
 namespace Nazel {
-enum class RendererAPI
-{
-	None = 0, OpenGL = 1, DirectX12 = 2
-};
 class Renderer
 {
 public:
-	inline static RendererAPI GetAPI() { return s_RendererAPI; }
-private:
-	static RendererAPI s_RendererAPI;
+	// 将场景、相机、光照等数据传入渲染管线
+	static void BeginScene();
+	static void EndScene();
+	static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+	inline static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
 };
 }
 
