@@ -71,6 +71,14 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\GraphicsContext.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\Shader.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\Renderer.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nazel\Application.cpp">
@@ -98,5 +106,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\Shader.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\Renderer.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>
