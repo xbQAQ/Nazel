@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "Input.h"
 
-#include <glad/glad.h>
+#include "Nazel/RenderAPI/Renderer.h"
 
 namespace Nazel {
 
@@ -22,7 +22,7 @@ Application::Application() {
 	m_VertexArray.reset(VertexArray::Create());
 
 	// 使用OpenGL函数渲染一个三角形
-	
+
 	// 2. 把我们的CPU的顶点数据复制到GPU顶点缓冲中，供OpenGL使用
 	// 顶点数据
 	float vertices[3 * 7] = {
@@ -127,16 +127,18 @@ Application::~Application() {
 
 void Application::Run() {
 	while (m_Running) {
-		glClearColor(1, 0, 1, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+		RenderCommand::Clear();
+		
+		Renderer::BeginScene();
 
 		m_BlueShader->Bind();
-		m_SquareVA->Bind();
-		glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		Renderer::Submit(m_SquareVA);
 
 		m_Shader->Bind();
-		m_VertexArray->Bind();
-		glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		Renderer::Submit(m_VertexArray);
+
+		Renderer::EndScene();
 
 		for (Layer* layer : m_LayerStack)
 			layer->OnUpdate();

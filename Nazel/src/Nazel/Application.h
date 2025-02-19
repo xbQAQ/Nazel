@@ -28,12 +28,11 @@ public:
 private:
 	bool OnWindowClose(WindowCloseEvent& e); 
 private:
-	std::unique_ptr<VertexArray> m_VertexArray;
-	std::unique_ptr<Shader> m_Shader;
-
+	std::shared_ptr<VertexArray> m_VertexArray;
+	std::shared_ptr<Shader> m_Shader;
 	std::shared_ptr<Shader> m_BlueShader;
 	std::shared_ptr<VertexArray> m_SquareVA;
-	std::unique_ptr<Window> m_Window;
+	std::shared_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;
 	LayerStack m_LayerStack;
