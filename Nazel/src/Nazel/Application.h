@@ -10,6 +10,7 @@
 #include "RenderAPI/Shader.h"
 #include "RenderAPI/Buffer.h"
 #include "RenderAPI/VertexArray.h"
+#include "Nazel/RenderAPI/OrthographicCamera.h"
 
 namespace Nazel {
 class NAZEL_API Application
@@ -33,6 +34,8 @@ private:
 	std::shared_ptr<Shader> m_BlueShader;
 	std::shared_ptr<VertexArray> m_SquareVA;
 	std::shared_ptr<Window> m_Window;
+
+	OrthographicCamera m_Camera;
 	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;
 	LayerStack m_LayerStack;
