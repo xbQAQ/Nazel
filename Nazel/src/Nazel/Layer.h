@@ -2,6 +2,7 @@
 
 #include "Nazel/Core.h"
 #include "Nazel/Events/Event.h"
+#include "Core/TimeStep.h"
 
 namespace Nazel {
 class NAZEL_API Layer
@@ -12,7 +13,7 @@ public:
 
 	virtual void OnAttach() { }
 	virtual void OnDetach() { }
-	virtual void OnUpdate() { }
+	virtual void OnUpdate(TimeStep deltaTime) { }
 	virtual void OnImGuiRender() { }
 	virtual void OnEvent(Event& event) { }
 

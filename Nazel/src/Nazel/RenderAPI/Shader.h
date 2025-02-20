@@ -2,6 +2,7 @@
 #include <string>
 #include "glm/glm.hpp"
 
+namespace Nazel {
 class Shader
 {
 public:
@@ -16,4 +17,6 @@ public:
 private:
 	uint32_t m_RendererID;
 };
+}
+
 

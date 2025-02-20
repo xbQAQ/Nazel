@@ -7,13 +7,9 @@
 #include "Nazel/Events/ApplicationEvent.h"
 #include "Nazel/LayerStack.h"
 #include "Nazel/imgui/ImguiLayer.h"
-#include "RenderAPI/Shader.h"
-#include "RenderAPI/Buffer.h"
-#include "RenderAPI/VertexArray.h"
-#include "Nazel/RenderAPI/OrthographicCamera.h"
 
 namespace Nazel {
-class NAZEL_API Application
+class Application
 {
 public:
 	Application();
@@ -29,16 +25,12 @@ public:
 private:
 	bool OnWindowClose(WindowCloseEvent& e); 
 private:
-	std::shared_ptr<VertexArray> m_VertexArray;
-	std::shared_ptr<Shader> m_Shader;
-	std::shared_ptr<Shader> m_BlueShader;
-	std::shared_ptr<VertexArray> m_SquareVA;
-	std::shared_ptr<Window> m_Window;
+	std::shared_ptr<Nazel::Window> m_Window;
 
-	OrthographicCamera m_Camera;
 	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;
 	LayerStack m_LayerStack;
+	float m_LastFrameTime = 0.0f;
 	static Application* s_Instance;
 };
 

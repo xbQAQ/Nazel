@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Nazel/Core.h"
+#include "KeyCodes.h"
 #include "utility"
 
 namespace Nazel {
