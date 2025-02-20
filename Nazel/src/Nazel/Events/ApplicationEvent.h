@@ -43,7 +43,7 @@ public:
 	AppTickEvent() { }
 
 	EVENT_CLASS_TYPE(AppTick)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 };
 
 class NAZEL_API AppUpdateEvent : public Event
@@ -52,7 +52,7 @@ public:
 	AppUpdateEvent() { }
 
 	EVENT_CLASS_TYPE(AppUpdate)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 };
 
 class NAZEL_API AppRenderEvent : public Event
@@ -61,6 +61,6 @@ public:
 	AppRenderEvent() { }
 
 	EVENT_CLASS_TYPE(AppRender)
-		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	EVENT_CLASS_CATEGORY(EventCategoryApplication)
 };
 }
