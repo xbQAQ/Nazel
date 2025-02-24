@@ -1,4 +1,7 @@
 ﻿#pragma once
+
+#include <memory>
+
 #ifdef NZ_PLATFORM_WINDOWS
 	#ifdef NZ_DYNAMIC_LINK
 		#ifdef NZ_BUILD_DLL
@@ -28,3 +31,11 @@
 
 #define BIT(x)(1 << x)
 #define BIND_FUNCTION(X) std::bind(&X, this, std::placeholders::_1)
+
+namespace Nazel {
+template <typename T>
+using Scope = std::unique_ptr<T>;
+
+template <typename T>
+using Ref = std::shared_ptr<T>;
+}
