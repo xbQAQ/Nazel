@@ -4,7 +4,9 @@
 #include "Nazel/RenderAPI/Buffer.h"
 #include "Nazel/RenderAPI/VertexArray.h"
 #include "Nazel/RenderAPI/OrthographicCamera.h"
+#include "Platform/OpenGL/OpenGLShader.h"
 #include "glm/gtc/matrix_transform.hpp"
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Nazel::Layer
 {
@@ -92,9 +94,9 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Nazel::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Nazel::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string blueShaderVertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -107,17 +109,18 @@ public:
 				gl_Position = u_ProjectionView * u_ModelTransform * vec4(a_Position, 1.0);	
 			}
 		)";
-		std::string blueShaderFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 			in vec3 v_Position;
+			uniform vec3 u_Color;
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
-		m_BlueShader.reset(new Nazel::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		m_FlatColorShader.reset(Nazel::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 	}
 	void OnUpdate(Nazel::TimeStep ts) override {
 		LOG_EDITOR_INFO("timestep: {0}s, {1}ms", ts.GetSeconds(), ts.GetMilliseconds());
@@ -146,11 +149,14 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Nazel::Renderer::Submit(m_BlueShader, m_SquareVA, transform);
+				Nazel::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 		Nazel::Renderer::Submit(m_Shader, m_VertexArray);
@@ -159,8 +165,8 @@ public:
 	}
 	virtual void OnImGuiRender() override {
 		//LOG_EDITOR_TRACE("Hello");
-		ImGui::Begin("Test");
-		ImGui::Text("Hello World");
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
 	void OnEvent(Nazel::Event& event) override {
@@ -174,7 +180,7 @@ public:
 private:
 	std::shared_ptr<Nazel::VertexArray> m_VertexArray;
 	std::shared_ptr<Nazel::Shader> m_Shader;
-	std::shared_ptr<Nazel::Shader> m_BlueShader;
+	std::shared_ptr<Nazel::Shader> m_FlatColorShader;
 	std::shared_ptr<Nazel::VertexArray> m_SquareVA;
 
 	Nazel::OrthographicCamera m_Camera;
@@ -184,6 +190,7 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 60.0f;
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public Nazel::Application
