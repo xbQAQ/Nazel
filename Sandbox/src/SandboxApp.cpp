@@ -44,16 +44,17 @@ public:
 
 		m_SquareVA.reset(Nazel::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		std::shared_ptr<Nazel::VertexBuffer> squareVB;
 		squareVB.reset(Nazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Nazel::ShaderDataType::Float3, "a_Position" }
+			{ Nazel::ShaderDataType::Float3, "a_Position" },
+			{ Nazel::ShaderDataType::Float2, "a_TexCoord" }
 		});
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -66,7 +67,7 @@ public:
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
+			layout(location = 1) in vec4 a_Color;	
 
 			uniform mat4 u_ProjectionView;
 			uniform mat4 u_ModelTransform;
@@ -121,6 +122,43 @@ public:
 			}
 		)";
 		m_FlatColorShader.reset(Nazel::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ProjectionView;
+			uniform mat4 u_ModelTransform;
+
+			out vec3 v_Position;
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_Position = a_Position;
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ProjectionView * u_ModelTransform * vec4(a_Position, 1.0);	
+			}
+		)";
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+		m_TextureShader.reset(Nazel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_Texture = Nazel::Texture2D::Create("assets/textures/Checkerboard.png");
+		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 	void OnUpdate(Nazel::TimeStep ts) override {
 		LOG_EDITOR_INFO("timestep: {0}s, {1}ms", ts.GetSeconds(), ts.GetMilliseconds());
@@ -160,6 +198,9 @@ public:
 			}
 		}
 		Nazel::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Nazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 
 		Nazel::Renderer::EndScene();
 	}
@@ -181,6 +222,8 @@ private:
 	std::shared_ptr<Nazel::VertexArray> m_VertexArray;
 	std::shared_ptr<Nazel::Shader> m_Shader;
 	std::shared_ptr<Nazel::Shader> m_FlatColorShader;
+	Nazel::Ref<Nazel::Shader> m_TextureShader;
+	Nazel::Ref<Nazel::Texture2D> m_Texture;
 	std::shared_ptr<Nazel::VertexArray> m_SquareVA;
 
 	Nazel::OrthographicCamera m_Camera;
