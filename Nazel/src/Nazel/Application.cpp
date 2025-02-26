@@ -12,9 +12,12 @@ Application* Application::s_Instance = nullptr;
 
 
 Application::Application() {
+	NZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 	m_Window = std::unique_ptr<Window>(Window::Create());
 	m_Window->SetEventCallback(BIND_EVENT_FUNCTION(OnEvent));
 	s_Instance = this;
+
+	Renderer::Init();
 
 	m_ImGuiLayer = new ImGuiLayer();
 	PushOverlay(m_ImGuiLayer);
