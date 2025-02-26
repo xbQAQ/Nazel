@@ -19,6 +19,7 @@ IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Nazel/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "Nazel/ThirdParty/imgui"
 IncludeDir["glm"] = "Nazel/ThirdParty/glm"
+IncludeDir["stb_image"] = "Nazel/ThirdParty/stb_image"
 
 
 include "Nazel/ThirdParty/GLFW"
@@ -47,9 +48,11 @@ project "Nazel"		--Nazel项目
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/ThirdParty/stb_image/**.h",
+		"%{prj.name}/ThirdParty/stb_image/**.cpp",
 		-- 可以不用包含hpp文件
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/ThirdParty/glm/glm/**.hpp",
+		"%{prj.name}/ThirdParty/glm/glm/**.inl"
 	}
 
 	-- 包含目录
@@ -60,7 +63,8 @@ project "Nazel"		--Nazel项目
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
