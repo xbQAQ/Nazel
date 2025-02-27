@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
-
+#include <array>
 #include "Nazel/Log.h"
 
 #ifdef NZ_PLATFORM_WINDOWS
