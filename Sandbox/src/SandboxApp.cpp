@@ -96,7 +96,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Nazel::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Nazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -122,42 +122,9 @@ public:
 				color = vec4(u_Color, 1.0);
 			}
 		)";
-		m_FlatColorShader.reset(Nazel::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = Nazel::Shader::Create("flatColorShader", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		std::string textureShaderVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec2 a_TexCoord;
-
-			uniform mat4 u_ProjectionView;
-			uniform mat4 u_ModelTransform;
-
-			out vec3 v_Position;
-			out vec2 v_TexCoord;
-			void main()
-			{
-				v_Position = a_Position;
-				v_TexCoord = a_TexCoord;
-				gl_Position = u_ProjectionView * u_ModelTransform * vec4(a_Position, 1.0);	
-			}
-		)";
-		std::string textureShaderFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec2 v_TexCoord;
-			
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				color = texture(u_Texture, v_TexCoord);
-			}
-		)";
-
-		m_TextureShader.reset(Nazel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+		m_TextureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 		m_Texture = Nazel::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogo = Nazel::Texture2D::Create("assets/textures/ChernoLogo.png");
 		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->Bind();
@@ -227,6 +194,7 @@ public:
 		}
 	}
 private:
+	Nazel::ShaderLibrary m_ShaderLibrary;
 	Nazel::Ref<Nazel::VertexArray> m_VertexArray;
 	Nazel::Ref<Nazel::Shader> m_Shader;
 	Nazel::Ref<Nazel::Shader> m_FlatColorShader, m_TextureShader;
