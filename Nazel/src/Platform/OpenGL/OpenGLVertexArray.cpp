@@ -41,8 +41,8 @@ void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& ver
 	uint32_t index = 0;
 	const auto& layout = vertexBuffer->GetLayout();
 	for (const auto& element : layout) {
-		glEnableVertexAttribArray(index);
-		glVertexAttribPointer(index,
+		glEnableVertexAttribArray(index + m_VertexBufferIndexOffset);
+		glVertexAttribPointer(index + m_VertexBufferIndexOffset,
 							  element.GetComponentCount(),
 							  ShaderDataTypeToOpenGLBaseType(element.Type),
 							  element.Normalized,
@@ -52,6 +52,8 @@ void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& ver
 	}
 
 	m_VertexBuffers.push_back(vertexBuffer);
+	// 修复 OpenGLVertexArray 不能同时绑定多个 VertexBuffer 的问题
+	m_VertexBufferIndexOffset += layout.GetElements().size();
 }
 void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
 	glBindVertexArray(m_RendererID);

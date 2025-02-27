@@ -10,6 +10,12 @@ workspace "Nazel"	-- sln文件名
 	-- 启动项目
 	startproject "Sandbox"
 
+	-- 多进程编译
+	flags
+	{
+		"MultiProcessorCompile"
+	}
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- -- 包含相对解决方案的目录
