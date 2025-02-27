@@ -5,6 +5,7 @@ namespace Nazel {
 class OpenGLRenderAPI :public RenderAPI
 {
 public:
+	void Init() override;
 	void SetClearColor(const glm::vec4& color) override;
 
 	void Clear() override;

@@ -1,4 +1,5 @@
 ﻿#include <Nazel.h>
+
 #include "imgui/imgui.h"
 #include "Nazel/RenderAPI/Shader.h"
 #include "Nazel/RenderAPI/Buffer.h"
@@ -38,7 +39,7 @@ public:
 
 		// 3. 复制我们的CPU的索引数据到GPU索引缓冲中，供OpenGL使用
 		uint32_t indices[3] = { 0, 1, 2 }; // 索引数据
-		std::shared_ptr<Nazel::IndexBuffer> m_IndexBuffer;
+		Nazel::Ref<Nazel::IndexBuffer> m_IndexBuffer;
 		m_IndexBuffer.reset(Nazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int)));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
@@ -50,7 +51,7 @@ public:
 			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
-		std::shared_ptr<Nazel::VertexBuffer> squareVB;
+		Nazel::Ref<Nazel::VertexBuffer> squareVB;
 		squareVB.reset(Nazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Nazel::ShaderDataType::Float3, "a_Position" },
@@ -58,7 +59,7 @@ public:
 		});
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Nazel::IndexBuffer> squareIB;
+		Nazel::Ref<Nazel::IndexBuffer> squareIB;
 		squareIB.reset(Nazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -134,7 +135,6 @@ public:
 
 			out vec3 v_Position;
 			out vec2 v_TexCoord;
-
 			void main()
 			{
 				v_Position = a_Position;
@@ -146,8 +146,9 @@ public:
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
-			in vec2 v_TexCoord;
 
+			in vec2 v_TexCoord;
+			
 			uniform sampler2D u_Texture;
 
 			void main()
@@ -155,10 +156,13 @@ public:
 				color = texture(u_Texture, v_TexCoord);
 			}
 		)";
+
 		m_TextureShader.reset(Nazel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 		m_Texture = Nazel::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogo = Nazel::Texture2D::Create("assets/textures/ChernoLogo.png");
 		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Nazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_texture", 0);
+
 	}
 	void OnUpdate(Nazel::TimeStep ts) override {
 		LOG_EDITOR_INFO("timestep: {0}s, {1}ms", ts.GetSeconds(), ts.GetMilliseconds());
@@ -197,10 +201,14 @@ public:
 				Nazel::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
+		// 三角形
 		Nazel::Renderer::Submit(m_Shader, m_VertexArray);
+		// 纹理
 		m_Texture->Bind();
 		Nazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+		m_ChernoLogo->Bind();
+		Nazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Nazel::Renderer::EndScene();
 	}
@@ -219,12 +227,11 @@ public:
 		}
 	}
 private:
-	std::shared_ptr<Nazel::VertexArray> m_VertexArray;
-	std::shared_ptr<Nazel::Shader> m_Shader;
-	std::shared_ptr<Nazel::Shader> m_FlatColorShader;
-	Nazel::Ref<Nazel::Shader> m_TextureShader;
-	Nazel::Ref<Nazel::Texture2D> m_Texture;
-	std::shared_ptr<Nazel::VertexArray> m_SquareVA;
+	Nazel::Ref<Nazel::VertexArray> m_VertexArray;
+	Nazel::Ref<Nazel::Shader> m_Shader;
+	Nazel::Ref<Nazel::Shader> m_FlatColorShader, m_TextureShader;
+	Nazel::Ref<Nazel::VertexArray> m_SquareVA;
+	Nazel::Ref<Nazel::Texture2D> m_Texture, m_ChernoLogo;
 
 	Nazel::OrthographicCamera m_Camera;
 

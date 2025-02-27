@@ -1,6 +1,11 @@
 #pragma once
 
+#include <string>
+
+#include "Nazel/Core.h"
+
 namespace Nazel {
+
 class Texture
 {
 public:
@@ -17,4 +22,5 @@ class Texture2D : public Texture
 public:
 	static Ref<Texture2D> Create(const std::string& path);
 };
+
 }

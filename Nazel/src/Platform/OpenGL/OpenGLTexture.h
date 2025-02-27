@@ -3,6 +3,7 @@
 #include "Nazel/RenderAPI/Texture.h"
 
 namespace Nazel {
+
 class OpenGLTexture2D : public Texture2D
 {
 public:

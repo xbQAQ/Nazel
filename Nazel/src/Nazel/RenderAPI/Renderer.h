@@ -8,6 +8,7 @@ namespace Nazel {
 class Renderer
 {
 public:
+	static void Init();
 	// 将场景、相机、光照等数据传入渲染管线
 	static void BeginScene(OrthographicCamera& camera);
 	static void EndScene();
