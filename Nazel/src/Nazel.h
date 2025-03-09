@@ -19,6 +19,7 @@
 #include "Nazel/RenderAPI/Shader.h"
 #include "Nazel/RenderAPI/VertexArray.h"
 
+#include "Nazel/OrthographicCameraController.h"
 #include "Nazel/RenderAPI/OrthographicCamera.h"
 
 // ---Entry Point---------------------

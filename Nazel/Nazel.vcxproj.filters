@@ -1416,6 +1416,9 @@
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nazel\OrthographicCameraController.h">
+      <Filter>src\Nazel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
@@ -1492,6 +1495,9 @@
     </ClCompile>
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nazel\OrthographicCameraController.cpp">
+      <Filter>src\Nazel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
