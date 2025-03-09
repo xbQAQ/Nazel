@@ -31,9 +31,12 @@ void Application::Run() {
 		float time = (float)glfwGetTime();
 		TimeStep deltaTime = time - m_LastFrameTime;
 		m_LastFrameTime = time;
-		for (Layer* layer : m_LayerStack)
-			layer->OnUpdate(deltaTime);
 
+		if (!m_Minimized) {
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate(deltaTime);
+		}
+		
 		auto [x, y] = Input::GetMousePosition();
 		//LOG_CORE_TRACE("({0}, {1})", x, y);
 
@@ -52,6 +55,8 @@ void Application::OnEvent(Event& e) {
 	case EventType::WindowClose:
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNCTION(OnWindowClose));
 		break;
+	case EventType::WindowResize:
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FUNCTION(OnWindowResize));
 	default:
 		break;
 	}
@@ -75,6 +80,15 @@ void Application::PushOverlay(Layer* layer) {
 bool Application::OnWindowClose(WindowCloseEvent& e) {
 	m_Running = false;
 	return true;
+}
+bool Application::OnWindowResize(WindowResizeEvent& e) {
+	if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+		m_Minimized = true;
+		return false;
+	}
+	m_Minimized = false;
+	Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+	return false;
 }
 }
 
