@@ -22,6 +22,3 @@
 #include "Nazel/OrthographicCameraController.h"
 #include "Nazel/RenderAPI/OrthographicCamera.h"
 
-// ---Entry Point---------------------
-#include "Nazel/EntryPoint.h"
-// -----------------------------------
