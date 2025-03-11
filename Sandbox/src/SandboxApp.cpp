@@ -6,9 +6,16 @@
 #include "Nazel/RenderAPI/VertexArray.h"
 #include "Nazel/RenderAPI/OrthographicCamera.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+
+#include "Sandbox2D.h"
+
 #include "glm/gtc/matrix_transform.hpp"
-#
 #include <glm/gtc/type_ptr.hpp>
+
+
+// ---Entry Point---------------------
+#include "Nazel/EntryPoint.h"
+// -----------------------------------
 
 class ExampleLayer : public Nazel::Layer
 {
@@ -16,7 +23,7 @@ public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true) {
 		// 1. 创建顶点数组
-		m_VertexArray.reset(Nazel::VertexArray::Create());
+		m_VertexArray = Nazel::VertexArray::Create();
 
 		// 使用OpenGL函数渲染一个三角形
 
@@ -28,7 +35,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 		std::shared_ptr<Nazel::VertexBuffer> m_VertexBuffer;
-		m_VertexBuffer.reset(Nazel::VertexBuffer::Create(vertices, sizeof(vertices)));
+		m_VertexBuffer = Nazel::VertexBuffer::Create(vertices, sizeof(vertices));
 		// 4. 设定顶点属性指针，来解释顶点缓冲中的顶点属性布局
 
 		Nazel::BufferLayout layout = {
@@ -41,10 +48,10 @@ public:
 		// 3. 复制我们的CPU的索引数据到GPU索引缓冲中，供OpenGL使用
 		uint32_t indices[3] = { 0, 1, 2 }; // 索引数据
 		Nazel::Ref<Nazel::IndexBuffer> m_IndexBuffer;
-		m_IndexBuffer.reset(Nazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int)));
+		m_IndexBuffer = Nazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(unsigned int));
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);
 
-		m_SquareVA.reset(Nazel::VertexArray::Create());
+		m_SquareVA = Nazel::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -53,7 +60,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		Nazel::Ref<Nazel::VertexBuffer> squareVB;
-		squareVB.reset(Nazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Nazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Nazel::ShaderDataType::Float3, "a_Position" },
 			{ Nazel::ShaderDataType::Float2, "a_TexCoord" }
@@ -61,7 +68,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		Nazel::Ref<Nazel::IndexBuffer> squareIB;
-		squareIB.reset(Nazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		squareIB = Nazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 		// 着色器代码
@@ -198,7 +205,8 @@ class Sandbox : public Nazel::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 	~Sandbox() {}
 };
