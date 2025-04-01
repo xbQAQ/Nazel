@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "OpenGLVertexArray.h"
 #include "glad/glad.h"
 
@@ -52,7 +52,7 @@ void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& ver
 	}
 
 	m_VertexBuffers.push_back(vertexBuffer);
-	// ĞŞ¸´ OpenGLVertexArray ²»ÄÜÍ¬Ê±°ó¶¨¶à¸ö VertexBuffer µÄÎÊÌâ
+	// ä¿®å¤ OpenGLVertexArray ä¸èƒ½åŒæ—¶ç»‘å®šå¤šä¸ª VertexBuffer çš„é—®é¢˜
 	m_VertexBufferIndexOffset += layout.GetElements().size();
 }
 void OpenGLVertexArray::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) {
