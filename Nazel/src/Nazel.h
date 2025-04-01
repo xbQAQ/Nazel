@@ -13,6 +13,7 @@
 
 // ---Renderer------------------------
 #include "Nazel/RenderAPI/Renderer.h"
+#include "Nazel/RenderAPI/Renderer2D.h"
 #include "Nazel/RenderAPI/RenderCommand.h"
 #include "Nazel/RenderAPI/Texture.h"
 #include "Nazel/RenderAPI/Buffer.h"
