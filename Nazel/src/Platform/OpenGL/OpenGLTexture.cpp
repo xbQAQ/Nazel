@@ -1,4 +1,4 @@
-
+ï»¿
 #include "pch.h"
 #include "OpenGLTexture.h"
 
@@ -28,13 +28,16 @@ OpenGLTexture2D::OpenGLTexture2D(const std::string& path) : m_Path(path) {
 	NZ_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 
 	glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
-	// ÎÆÀí´æ´¢¸ñÊ½
+	// çº¹ç†å­˜å‚¨æ ¼å¼
 	glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
 
 	glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-	// ÊäÈëµÄÊı¾İÎÆÀí¸ñÊ½
+	glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// è¾“å…¥çš„æ•°æ®çº¹ç†æ ¼å¼
 	glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 	stbi_image_free(data);
