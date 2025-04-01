@@ -1,15 +1,15 @@
 ﻿#pragma once
 // For use by Nazel applications
 #include <iostream>
-#include "Nazel/Application.h"
-#include "Nazel/Layer.h"
+#include "Nazel/Core/Application.h"
+#include "Nazel/Core/Layer.h"
 #include "Nazel/imgui/ImguiLayer.h"
-#include "Nazel/Log.h"
+#include "Nazel/Core/Log.h"
 #include "Nazel/Core/TimeStep.h"
 
-#include "Nazel/KeyCodes.h"
-#include "Nazel/MouseButtonCodes.h"
-#include "Nazel/Input.h"
+#include "Nazel/Core/KeyCodes.h"
+#include "Nazel/Core/MouseButtonCodes.h"
+#include "Nazel/Core/Input.h"
 
 // ---Renderer------------------------
 #include "Nazel/RenderAPI/Renderer.h"

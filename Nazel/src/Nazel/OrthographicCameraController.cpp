@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "OrthographicCameraController.h"
-#include "Nazel/Input.h"
+#include "Nazel/Core/Input.h"
 
 namespace Nazel {
 OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation) :

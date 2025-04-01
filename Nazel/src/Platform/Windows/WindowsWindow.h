@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Nazel/Window.h"
+#include "Nazel/Core/Window.h"
 #include "Nazel/RenderAPI/GraphicsContext.h"
 
 #include <GLFW/glfw3.h> 

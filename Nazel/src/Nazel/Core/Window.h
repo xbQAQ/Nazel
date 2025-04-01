@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-#include "Nazel/Core.h"
+#include "Nazel/Core/Core.h"
 #include "Nazel/Events/Event.h"
 
 namespace Nazel {

@@ -14,7 +14,7 @@
 
 
 // ---Entry Point---------------------
-#include "Nazel/EntryPoint.h"
+#include "Nazel/Core/EntryPoint.h"
 // -----------------------------------
 
 class ExampleLayer : public Nazel::Layer

@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "WindowsInput.h"
 
-#include "Nazel/Application.h"
+#include "Nazel/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Nazel {

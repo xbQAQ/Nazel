@@ -1,11 +1,11 @@
 ﻿#pragma once
 #include "Core.h"
-#include "Events/Event.h"
+#include "Nazel/Events/Event.h"
 #include "Window.h"
 
 #include "Application.h"
 #include "Nazel/Events/ApplicationEvent.h"
-#include "Nazel/LayerStack.h"
+#include "Nazel/Core/LayerStack.h"
 #include "Nazel/imgui/ImguiLayer.h"
 
 namespace Nazel {

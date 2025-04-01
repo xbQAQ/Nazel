@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "Nazel/Core.h"
+#include "Nazel/Core/Core.h"
 #include "Nazel/Events/Event.h"
-#include "Core/TimeStep.h"
+#include "Nazel/Core/TimeStep.h"
 
 namespace Nazel {
 class NAZEL_API Layer

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Nazel/Core.h"
+#include "Nazel/Core/Core.h"
 #include "Layer.h"
 
 namespace Nazel { 
