@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Nazel/Input.h"
+#include "Nazel/Core/Input.h"
 
 namespace Nazel {
 class WindowsInput : public Input

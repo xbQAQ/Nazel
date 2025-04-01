@@ -12,7 +12,7 @@
 #include <unordered_set>
 #include <utility>
 #include <array>
-#include "Nazel/Log.h"
+#include "Nazel/Core/Log.h"
 
 #ifdef NZ_PLATFORM_WINDOWS
 #include <Windows.h>

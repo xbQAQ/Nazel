@@ -1,5 +1,5 @@
 #pragma once
-#include "Nazel/Layer.h"
+#include "Nazel/Core/Layer.h"
 #include "Nazel/Events/KeyEvent.h"
 #include "Nazel/Events/MouseEvent.h"
 #include "Nazel/Events/ApplicationEvent.h"

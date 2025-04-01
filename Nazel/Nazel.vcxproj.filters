@@ -1311,16 +1311,16 @@
     <ClInclude Include="src\Nazel.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Application.h">
+    <ClInclude Include="src\Nazel\Core\Application.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Core.h">
+    <ClInclude Include="src\Nazel\Core\Core.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Nazel\Core\TimeStep.h">
       <Filter>src\Nazel\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\EntryPoint.h">
+    <ClInclude Include="src\Nazel\Core\EntryPoint.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Nazel\Events\ApplicationEvent.h">
@@ -1335,22 +1335,25 @@
     <ClInclude Include="src\Nazel\Events\MouseEvent.h">
       <Filter>src\Nazel\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Input.h">
+    <ClInclude Include="src\Nazel\Core\Input.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\KeyCodes.h">
+    <ClInclude Include="src\Nazel\Core\KeyCodes.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Layer.h">
+    <ClInclude Include="src\Nazel\Core\Layer.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\LayerStack.h">
+    <ClInclude Include="src\Nazel\Core\LayerStack.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Log.h">
+    <ClInclude Include="src\Nazel\Core\Log.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\MouseButtonCodes.h">
+    <ClInclude Include="src\Nazel\Core\MouseButtonCodes.h">
+      <Filter>src\Nazel</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nazel\OrthographicCameraController.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Nazel\RenderAPI\Buffer.h">
@@ -1383,7 +1386,7 @@
     <ClInclude Include="src\Nazel\RenderAPI\VertexArray.h">
       <Filter>src\Nazel\RenderAPI</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\Window.h">
+    <ClInclude Include="src\Nazel\Core\Window.h">
       <Filter>src\Nazel</Filter>
     </ClInclude>
     <ClInclude Include="src\Nazel\imgui\ImguiLayer.h">
@@ -1416,24 +1419,25 @@
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nazel\OrthographicCameraController.h">
-      <Filter>src\Nazel</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
       <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Nazel\Application.cpp">
+    <ClCompile Include="src\Nazel\Core\Application.cpp">
       <Filter>src\Nazel</Filter>
     </ClCompile>
-    <ClCompile Include="src\Nazel\Layer.cpp">
+    <ClCompile Include="src\Nazel\Core\Layer.cpp">
       <Filter>src\Nazel</Filter>
     </ClCompile>
-    <ClCompile Include="src\Nazel\LayerStack.cpp">
+    <ClCompile Include="src\Nazel\Core\LayerStack.cpp">
       <Filter>src\Nazel</Filter>
     </ClCompile>
-    <ClCompile Include="src\Nazel\Log.cpp">
+    <ClCompile Include="src\Nazel\Core\Log.cpp">
+      <Filter>src\Nazel</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nazel\OrthographicCameraController.cpp">
       <Filter>src\Nazel</Filter>
     </ClCompile>
     <ClCompile Include="src\Nazel\RenderAPI\Buffer.cpp">
@@ -1496,8 +1500,6 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Nazel\OrthographicCameraController.cpp">
-      <Filter>src\Nazel</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Nazel\RenderAPI\Renderer2D.cpp" />
   </ItemGroup>
 </Project>
