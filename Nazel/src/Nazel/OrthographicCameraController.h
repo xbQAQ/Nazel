@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Nazel/Events/Event.h"
 #include "Nazel/Events/MouseEvent.h"
 #include "Nazel/Events/ApplicationEvent.h"
@@ -27,7 +27,7 @@ private:
 
 private:
 	float m_AspectRatio;
-	float m_ZoomLevel = 1.0f;	// ¸úÓ¦ÓÃµÄ¸ßÊÇ1:1µÄ¹ØÏµ£¬Ïàµ±ÓÚ¸ß
+	float m_ZoomLevel = 1.0f;	// è·Ÿåº”ç”¨çš„é«˜æ˜¯1:1çš„å…³ç³»ï¼Œç›¸å½“äºŽé«˜
 	OrthographicCamera m_Camera;
 
 	bool m_rotation;
