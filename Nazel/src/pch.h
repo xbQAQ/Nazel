@@ -14,6 +14,8 @@
 #include <array>
 #include "Nazel/Core/Log.h"
 
+#include "Nazel/Debug/Instrumentor.h"
+
 #ifdef NZ_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif
