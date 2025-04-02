@@ -7,7 +7,7 @@
 
 #include <thread>
 
-namespace Hazel {
+namespace Nazel {
 struct ProfileResult
 {
 	std::string Name;
@@ -114,10 +114,10 @@ private:
 
 #define NZ_PROFILE 1
 #if NZ_PROFILE
-#define PROFILE_BEGIN_SESSION(name, filepath) ::Hazel::Instrumentor::Get().BeginSession(name, filepath)
-#define PROFILE_END_SESSION() ::Hazel::Instrumentor::Get().EndSession()
-#define PROFILE_SCOPE(name) ::Hazel::InstrumentationTimer timer##__LINE__(name);
-#define PROFILE_FUNCTION() NZ_PROFILE_SCOPE(__FUNCSIG__)
+#define PROFILE_BEGIN_SESSION(name, filepath) ::Nazel::Instrumentor::Get().BeginSession(name, filepath)
+#define PROFILE_END_SESSION() ::Nazel::Instrumentor::Get().EndSession()
+#define PROFILE_SCOPE(name) ::Nazel::InstrumentationTimer timer##__LINE__(name);
+#define PROFILE_FUNCTION() PROFILE_SCOPE(__FUNCSIG__)
 #else
 #define PROFILE_BEGIN_SESSION(name, filepath)
 #define PROFILE_END_SESSION()

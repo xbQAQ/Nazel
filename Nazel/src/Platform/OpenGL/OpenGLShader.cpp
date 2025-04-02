@@ -7,6 +7,8 @@
 
 namespace Nazel {
 static GLenum ShaderTypeFromString(const std::string& type) {
+	PROFILE_FUNCTION();
+
 	if (type == "vertex") return GL_VERTEX_SHADER;
 	
 	if (type == "fragment" || type == "pixel")
@@ -16,6 +18,8 @@ static GLenum ShaderTypeFromString(const std::string& type) {
 	return 0;
 }
 OpenGLShader::OpenGLShader(const std::string& filepath) : m_RendererID(0) {
+	PROFILE_FUNCTION();
+
 	std::string source = ReadFile(filepath);
 	auto shadersources = PreProcess(source);
 	Compile(shadersources);
@@ -42,15 +46,23 @@ void OpenGLShader::Unbind() const {
 	glUseProgram(0);
 }
 void OpenGLShader::SetInt(const std::string& name, int value) {
+	PROFILE_FUNCTION();
+
 	UploadUniformInt(name, value);
 }
 void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value) {
+	PROFILE_FUNCTION();
+
 	UploadUniformFloat3(name, value);
 }
 void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value) {
+	PROFILE_FUNCTION();
+
 	UploadUniformFloat4(name, value);
 }
 void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value) {
+	PROFILE_FUNCTION();
+
 	UploadUniformMat4(name, value);
 }
 const std::string& OpenGLShader::GetName() const {
@@ -85,6 +97,8 @@ void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& m
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 std::string OpenGLShader::ReadFile(const std::string& filepath) {
+	PROFILE_FUNCTION();
+
 	std::string result;
 	std::ifstream in(filepath, std::ios::in | std::ios::binary);
 	if (in) {
@@ -100,6 +114,8 @@ std::string OpenGLShader::ReadFile(const std::string& filepath) {
 	return result;
 }
 std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source) {
+	PROFILE_FUNCTION();
+
 	std::unordered_map<GLenum, std::string> shaderSources;
 
 	const char* typeToken = "#type";
@@ -121,6 +137,8 @@ std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::stri
 	return shaderSources;
 }
 void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources) {
+	PROFILE_FUNCTION();
+
 	GLuint program = glCreateProgram();
 	NZ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
 	std::array<GLenum, 2> glShaderIDs;

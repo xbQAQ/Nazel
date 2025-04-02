@@ -159,6 +159,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Nazel\Debug\Instrumentor.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_features.hpp" />
