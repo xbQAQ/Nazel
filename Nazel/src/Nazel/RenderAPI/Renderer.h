@@ -9,6 +9,7 @@ class Renderer
 {
 public:
 	static void Init();
+	static void Shutdown();
 	static void OnWindowResize(uint32_t width, uint32_t height);
 	// 将场景、相机、光照等数据传入渲染管线
 	static void BeginScene(OrthographicCamera& camera);

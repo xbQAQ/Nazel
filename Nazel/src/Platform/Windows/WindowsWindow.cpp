@@ -8,34 +8,42 @@
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Nazel {
-static bool s_GLFWInitialized = false;
+static uint8_t s_GLFWWindowCount = 0;
 
 Window* Window::Create(const WindowProps& props) {
 	return new WindowsWindow(props);
 }
 
 WindowsWindow::WindowsWindow(const WindowProps& props) {
+	PROFILE_FUNCTION();
+
 	Init(props);
 }
 
 WindowsWindow::~WindowsWindow() {
+	PROFILE_FUNCTION();
+
 	Shutdown();
 }
 
 void WindowsWindow::Init(const WindowProps& props) {
+	PROFILE_FUNCTION();
+
 	m_Data.Title = props.Title;
 	m_Data.Width = props.Width;
 	m_Data.Height = props.Height;
 
 	LOG_CORE_INFO("Create Window {0} ({1}{2})", props.Title, props.Width, props.Height);
 
-	if (!s_GLFWInitialized) {
+	if (s_GLFWWindowCount == 0) {
+		PROFILE_SCOPE("glfwInit");
+
 		int success = glfwInit();
 		NZ_CORE_ASSERT(success, "Could not initialize GLFW!");
 		glfwSetErrorCallback([](int error, const char* description) -> void {
 			LOG_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 		});
-		s_GLFWInitialized = true;
+		s_GLFWWindowCount++;
 	}
 
 	// 创建窗口
@@ -141,15 +149,26 @@ void WindowsWindow::Init(const WindowProps& props) {
 }
 
 void WindowsWindow::Shutdown() {
+	PROFILE_FUNCTION();
+
 	glfwDestroyWindow(m_Window);
+	--s_GLFWWindowCount;
+
+	if (s_GLFWWindowCount == 0) {
+		glfwTerminate();
+	}
 }
 
 void WindowsWindow::OnUpdate() {
+	PROFILE_FUNCTION();
+
 	glfwPollEvents();
 	glfwSwapBuffers(m_Window);
 }
 
 void WindowsWindow::SetVSync(bool enabled) {
+	PROFILE_FUNCTION();
+
 	if (enabled)
 		glfwSwapInterval(1);
 	else

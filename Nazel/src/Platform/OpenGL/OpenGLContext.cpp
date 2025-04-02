@@ -11,6 +11,8 @@ OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
 	NZ_CORE_ASSERT(windowHandle, "Window handle is null!")
 }
 void OpenGLContext::Init() {
+	PROFILE_FUNCTION();
+
 	// 将我们窗口的上下文设置为当前线程的主上下文
 	glfwMakeContextCurrent(m_WindowHandle);
 	// 获取显卡OpenGL函数定义的地址
@@ -24,6 +26,8 @@ void OpenGLContext::Init() {
 
 }
 void OpenGLContext::SwapBuffers() {
+	PROFILE_FUNCTION();
+
 	glfwSwapBuffers(m_WindowHandle);// 交换缓冲
 }
 }

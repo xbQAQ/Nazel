@@ -9,19 +9,19 @@ Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f
 }
 
 void Sandbox2D::OnAttach() {
+	PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = Nazel::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void Sandbox2D::OnDetach() {
+	PROFILE_FUNCTION();
 }
 
 void Sandbox2D::OnUpdate(Nazel::TimeStep deltaTime) {
-	PROFILE_SCOPE("Sandbox2D::OnUpdate");
+	PROFILE_FUNCTION();
 
-	{
-		PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController.OnUpdate(deltaTime);
-	}
+	m_CameraController.OnUpdate(deltaTime);
 
 	{
 		PROFILE_SCOPE("Renderer Prep");
