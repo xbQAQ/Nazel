@@ -19,6 +19,7 @@ Application::Application() {
 	m_Window->SetEventCallback(BIND_EVENT_FUNCTION(OnEvent));
 	s_Instance = this;
 
+	// 初始化渲染器
 	Renderer::Init();
 
 	m_ImGuiLayer = new ImGuiLayer();
