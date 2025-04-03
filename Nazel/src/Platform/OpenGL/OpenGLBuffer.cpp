@@ -1,8 +1,15 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "OpenGLBuffer.h"
 #include "glad/glad.h"
 
 namespace Nazel {
+OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size) {
+	PROFILE_FUNCTION();
+
+	glCreateBuffers(1, &m_RendererID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+	glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+}
 OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size) {
 	PROFILE_FUNCTION();
 
@@ -29,6 +36,12 @@ void OpenGLVertexBuffer::Unbind() const {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+void OpenGLVertexBuffer::SetData(const void* data, uint32_t size) {
+	PROFILE_FUNCTION();
+	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+}
+
 const BufferLayout& OpenGLVertexBuffer::GetLayout() const {
 	return m_Layout;
 }
@@ -42,6 +55,7 @@ OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count) : m_Coun
 
 	glCreateBuffers(1, &m_RendererID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
+	// 创建内存并上传数据
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indices, GL_STATIC_DRAW);
 }
 
