@@ -22,12 +22,12 @@ void OrthographicCameraController::OnUpdate(TimeStep ts) {
 	}
 
 	if (Input::IsKeyPressed(NZ_KEY_S)) {
-		m_CameraPosition.x += -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
-		m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
-	}
-	else if (Input::IsKeyPressed(NZ_KEY_W)) {
 		m_CameraPosition.x -= -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		m_CameraPosition.y -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+	}
+	else if (Input::IsKeyPressed(NZ_KEY_W)) {
+		m_CameraPosition.x += -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
+		m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 	}
 
 	if (m_rotation) {
