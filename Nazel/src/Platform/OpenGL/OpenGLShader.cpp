@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "OpenGLShader.h"
 #include <fstream>
 
@@ -75,6 +75,11 @@ void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value) {
 
 	UploadUniformMat4(name, value);
 }
+void OpenGLShader::SetIntArray(const std::string& name, int* values, uint32_t count) {
+	PROFILE_FUNCTION();
+
+	UploadUniformIntArray(name, values, count);
+}
 const std::string& OpenGLShader::GetName() const {
 	return m_Name;
 }
@@ -106,6 +111,10 @@ void OpenGLShader::UploadUniformMat4(const std::string& name, const glm::mat4& m
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
+void OpenGLShader::UploadUniformIntArray(const std::string& name, int* values, uint32_t count) {
+	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
+	glUniform1iv(location, count, values);
+}
 std::string OpenGLShader::ReadFile(const std::string& filepath) {
 	PROFILE_FUNCTION();
 
@@ -132,7 +141,7 @@ std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::stri
 	size_t typeTokenLength = strlen(typeToken);
 	size_t pos = source.find(typeToken, 0);
 	while (pos != std::string::npos) {
-		// ��ĩβ
+		// 行末尾
 		size_t eol = source.find_first_of("\r\n", pos);
 		NZ_CORE_ASSERT((eol != std::string::npos), "Syntax error");
 
