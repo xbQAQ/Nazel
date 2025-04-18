@@ -215,6 +215,8 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 		}
 	}
 	if (textureIndex == 0.0f) {
+		if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTexureSlots)
+			FlushAndReset();
 		textureIndex = (float)s_Data.TextureSlotIndex;
 		s_Data.TextureSlots[s_Data.TextureSlotIndex++] = texture;
 	}
@@ -330,6 +332,8 @@ void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& siz
 		}
 	}
 	if (textureIndex == 0.0f) {
+		if (s_Data.TextureSlotIndex >= Renderer2DData::MaxTexureSlots)
+			FlushAndReset();
 		textureIndex = (float)s_Data.TextureSlotIndex;
 		s_Data.TextureSlots[s_Data.TextureSlotIndex++] = texture;
 	}

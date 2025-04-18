@@ -66,6 +66,10 @@ void Application::Run() {
 	}
 }
 
+void Application::Close() {
+	m_Running = false;
+}
+
 void Application::OnEvent(Event& e) {
 	PROFILE_FUNCTION();
 
