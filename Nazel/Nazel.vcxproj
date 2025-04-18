@@ -159,6 +159,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\FrameBuffer.h" />
     <ClInclude Include="src\Nazel\Debug\Instrumentor.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
@@ -618,6 +620,8 @@
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\FrameBuffer.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Renderer2D.cpp" />
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Nazel\Core\Application.cpp" />

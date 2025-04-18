@@ -1421,6 +1421,8 @@
     </ClInclude>
     <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
     <ClInclude Include="src\Nazel\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\FrameBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
@@ -1502,5 +1504,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Nazel\RenderAPI\Renderer2D.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\FrameBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
   </ItemGroup>
 </Project>

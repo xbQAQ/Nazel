@@ -12,6 +12,11 @@ void Sandbox2D::OnAttach() {
 	PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = Nazel::Texture2D::Create("assets/textures/Checkerboard.png");
+
+	Nazel::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = Nazel::FrameBuffer::Create(fbSpec);
 }
 
 void Sandbox2D::OnDetach() {
@@ -25,6 +30,7 @@ void Sandbox2D::OnUpdate(Nazel::TimeStep deltaTime) {
 	Nazel::Renderer2D::ResetStats();
 	{
 		PROFILE_SCOPE("Renderer Prep");
+		m_Framebuffer->Bind();
 		Nazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Nazel::RenderCommand::Clear();
 	}
@@ -52,6 +58,7 @@ void Sandbox2D::OnUpdate(Nazel::TimeStep deltaTime) {
 			}
 		}
 		Nazel::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
 }
 
@@ -127,8 +134,8 @@ void Sandbox2D::OnImGuiRender() {
 
 		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-		uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-		ImGui::Image((ImTextureID)textureID, ImVec2{ 256.0f, 256.0f });
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+		ImGui::Image((ImTextureID)textureID, ImVec2{ (float)m_Framebuffer->GetSpecification().Width, (float)m_Framebuffer->GetSpecification().Height });
 		ImGui::End();
 
 		ImGui::End();
