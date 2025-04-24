@@ -55,8 +55,8 @@ void Sandbox2D::OnUpdate(Nazel::TimeStep deltaTime) {
 			for (float x = -5.0f; x < 5.0f; x += 0.5f) {
 				glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.7f };
 				Nazel::Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
-			}
-		}
+	}
+}
 		Nazel::Renderer2D::EndScene();
 		m_Framebuffer->Unbind();
 	}
@@ -141,7 +141,7 @@ void Sandbox2D::OnImGuiRender() {
 		ImGui::End();
 	}
 	else {
-		ImGui::Begin("Settings");
+	ImGui::Begin("Settings");
 
 		auto stats = Nazel::Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats:");
@@ -150,16 +150,16 @@ void Sandbox2D::OnImGuiRender() {
 		ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 		ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-		ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-		for (auto& result : m_ProfileResults) {
-			char label[50];
-			strcpy(label, "%.3fms ");
-			strcat(label, result.Name);
-			ImGui::Text(label, result.Time);
-		}
-		m_ProfileResults.clear();
-		ImGui::End();
+	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+	for (auto& result : m_ProfileResults) {
+		char label[50];
+		strcpy(label, "%.3fms ");
+		strcat(label, result.Name);
+		ImGui::Text(label, result.Time);
 	}
+	m_ProfileResults.clear();
+	ImGui::End();
+}
 }
 
 void Sandbox2D::OnEvent(Nazel::Event& event) {
