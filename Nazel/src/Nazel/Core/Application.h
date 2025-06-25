@@ -12,7 +12,7 @@ namespace Nazel {
 class Application
 {
 public:
-	Application();
+	Application(const std::string& name = "Hazel App");
 	virtual ~Application();
 	void Run();
 	void Close();
@@ -27,7 +27,7 @@ private:
 	bool OnWindowClose(WindowCloseEvent& e); 
 	bool OnWindowResize(WindowResizeEvent& e);
 private:
-	std::shared_ptr<Nazel::Window> m_Window;
+	std::unique_ptr<Nazel::Window> m_Window;
 
 	ImGuiLayer* m_ImGuiLayer;
 	bool m_Running = true;

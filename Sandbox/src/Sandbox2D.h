@@ -16,7 +16,6 @@ private:
 	Nazel::Ref<Nazel::VertexArray> m_SquareVA;
 	Nazel::Ref<Nazel::Shader> m_FlatColorShader;
 	Nazel::Ref<Nazel::Texture2D> m_CheckerboardTexture;
-	Nazel::Ref<Nazel::FrameBuffer> m_Framebuffer;
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 
 	struct ProfileResult

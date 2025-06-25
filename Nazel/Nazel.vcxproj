@@ -159,10 +159,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
-    <ClInclude Include="src\Nazel\RenderAPI\FrameBuffer.h" />
-    <ClInclude Include="src\Nazel\Debug\Instrumentor.h" />
-    <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
     <ClInclude Include="ThirdParty\glm\glm\common.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_features.hpp" />
     <ClInclude Include="ThirdParty\glm\glm\detail\_fixes.hpp" />
@@ -584,33 +580,37 @@
     <ClInclude Include="src\Nazel.h" />
     <ClInclude Include="src\Nazel\Core\Application.h" />
     <ClInclude Include="src\Nazel\Core\Core.h" />
-    <ClInclude Include="src\Nazel\Core\TimeStep.h" />
     <ClInclude Include="src\Nazel\Core\EntryPoint.h" />
-    <ClInclude Include="src\Nazel\Events\ApplicationEvent.h" />
-    <ClInclude Include="src\Nazel\Events\Event.h" />
-    <ClInclude Include="src\Nazel\Events\KeyEvent.h" />
-    <ClInclude Include="src\Nazel\Events\MouseEvent.h" />
     <ClInclude Include="src\Nazel\Core\Input.h" />
     <ClInclude Include="src\Nazel\Core\KeyCodes.h" />
     <ClInclude Include="src\Nazel\Core\Layer.h" />
     <ClInclude Include="src\Nazel\Core\LayerStack.h" />
     <ClInclude Include="src\Nazel\Core\Log.h" />
     <ClInclude Include="src\Nazel\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Nazel\Core\TimeStep.h" />
+    <ClInclude Include="src\Nazel\Core\Window.h" />
+    <ClInclude Include="src\Nazel\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Nazel\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Nazel\Events\Event.h" />
+    <ClInclude Include="src\Nazel\Events\KeyEvent.h" />
+    <ClInclude Include="src\Nazel\Events\MouseEvent.h" />
     <ClInclude Include="src\Nazel\OrthographicCameraController.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Buffer.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Camera.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\FrameBuffer.h" />
     <ClInclude Include="src\Nazel\RenderAPI\GraphicsContext.h" />
     <ClInclude Include="src\Nazel\RenderAPI\OrthographicCamera.h" />
     <ClInclude Include="src\Nazel\RenderAPI\RenderAPI.h" />
     <ClInclude Include="src\Nazel\RenderAPI\RenderCommand.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Renderer.h" />
+    <ClInclude Include="src\Nazel\RenderAPI\Renderer2D.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Shader.h" />
     <ClInclude Include="src\Nazel\RenderAPI\Texture.h" />
     <ClInclude Include="src\Nazel\RenderAPI\VertexArray.h" />
-    <ClInclude Include="src\Nazel\Core\Window.h" />
     <ClInclude Include="src\Nazel\imgui\ImguiLayer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRenderAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -620,9 +620,6 @@
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
-    <ClCompile Include="src\Nazel\RenderAPI\FrameBuffer.cpp" />
-    <ClCompile Include="src\Nazel\RenderAPI\Renderer2D.cpp" />
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Nazel\Core\Application.cpp" />
     <ClCompile Include="src\Nazel\Core\Layer.cpp" />
@@ -631,10 +628,12 @@
     <ClCompile Include="src\Nazel\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Buffer.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Camera.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\FrameBuffer.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\OrthographicCamera.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\RenderAPI.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\RenderCommand.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Renderer.cpp" />
+    <ClCompile Include="src\Nazel\RenderAPI\Renderer2D.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Shader.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\Texture.cpp" />
     <ClCompile Include="src\Nazel\RenderAPI\VertexArray.cpp" />
@@ -642,6 +641,7 @@
     <ClCompile Include="src\Nazel\imgui\ImguiLayer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRenderAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />

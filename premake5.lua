@@ -1,4 +1,4 @@
-workspace "Nazel"	-- slnÎÄ¼şÃû
+workspace "Nazel"    -- è§£å†³æ–¹æ¡ˆåç§°
 	architecture "x64"
 
 	configurations{
@@ -7,10 +7,10 @@ workspace "Nazel"	-- slnÎÄ¼şÃû
 		"Dist"
 	}
 
-	-- Æô¶¯ÏîÄ¿
+	-- å¯åŠ¨é¡¹ç›®
 	startproject "Sandbox"
 
-	-- ¶à½ø³Ì±àÒë
+	-- å¯ç”¨å¤šå¤„ç†å™¨ç¼–è¯‘
 	flags
 	{
 		"MultiProcessorCompile"
@@ -18,8 +18,7 @@ workspace "Nazel"	-- slnÎÄ¼şÃû
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
--- -- °üº¬Ïà¶Ô½â¾ö·½°¸µÄÄ¿Â¼
--- Include directories relative to root folder (solution directory)
+-- åŒ…å«ç›®å½•ç›¸å¯¹è·¯å¾„
 IncludeDir = {}
 IncludeDir["GLFW"] = "Nazel/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Nazel/ThirdParty/Glad/include"
@@ -27,41 +26,36 @@ IncludeDir["ImGui"] = "Nazel/ThirdParty/imgui"
 IncludeDir["glm"] = "Nazel/ThirdParty/glm"
 IncludeDir["stb_image"] = "Nazel/ThirdParty/stb_image"
 
-
 include "Nazel/ThirdParty/GLFW"
 include "Nazel/ThirdParty/Glad"
 include "Nazel/ThirdParty/imgui"
 
-project "Nazel"		--NazelÏîÄ¿
-	location "Nazel"	--ÔÚslnËùÊôÎÄ¼ş¼ĞÏÂµÄNazelÎÄ¼ş¼Ğ
-	-- kind "SharedLib"	--dll¶¯Ì¬¿â
-	kind "StaticLib"	--lib¿â
+project "Nazel"        -- Nazelé¡¹ç›®
+	location "Nazel"    -- åœ¨slnæ–‡ä»¶ç›®å½•ä¸‹çš„Nazelæ–‡ä»¶å¤¹
+	kind "StaticLib"    -- é™æ€åº“
 	language "C++"
 	buildoptions "/utf-8"
-	-- On:´úÂëÉú³ÉµÄÔËĞĞ¿âÑ¡ÏîÊÇMTD,¾²Ì¬Á´½ÓMSVCRT.lib¿â;
-	-- Off:´úÂëÉú³ÉµÄÔËĞĞ¿âÑ¡ÏîÊÇMDD,¶¯Ì¬Á´½ÓMSVCRT.dll¿â;´ò°üºóµÄexe·Åµ½ÁíÒ»Ì¨µçÄÔÉÏÈôÎŞÕâ¸ödll»á±¨´í
-	staticruntime "on"	
+	staticruntime "on"    -- é™æ€é“¾æ¥è¿è¡Œæ—¶åº“
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")	-- Êä³öÄ¿Â¼
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")	-- ÖĞ¼äÄ¿Â¼
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")    -- è¾“å‡ºç›®å½•
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")    -- ä¸­é—´æ–‡ä»¶ç›®å½•
 
-	-- Ô¤±àÒëÍ· 
+	-- é¢„ç¼–è¯‘å¤´
 	pchheader "pch.h"
 	pchsource "Nazel/src/pch.cpp"
 
-	-- °üº¬µÄËùÓĞhºÍcppÎÄ¼ş
+	-- åŒ…å«æ‰€æœ‰hå’Œcppæ–‡ä»¶
 	files
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/ThirdParty/stb_image/**.h",
 		"%{prj.name}/ThirdParty/stb_image/**.cpp",
-		-- ¿ÉÒÔ²»ÓÃ°üº¬hppÎÄ¼ş
 		"%{prj.name}/ThirdParty/glm/glm/**.hpp",
 		"%{prj.name}/ThirdParty/glm/glm/**.inl"
 	}
 
-	-- °üº¬Ä¿Â¼
+	-- åŒ…å«ç›®å½•
 	includedirs
 	{
 		"%{prj.name}/ThirdParty/spdlog/include",
@@ -85,7 +79,7 @@ project "Nazel"		--NazelÏîÄ¿
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
-	-- Èç¹ûÊÇwindowÏµÍ³
+	-- é’ˆå¯¹Windowsç³»ç»Ÿ
 	filter "system:Windows"
 		cppdialect "C++17"
 		systemversion "latest"
@@ -97,7 +91,7 @@ project "Nazel"		--NazelÏîÄ¿
 			"GLAD_INCLUDE_NONE"
 		}
 
-		-- ±àÒëºÃºóÒÆ¶¯Hazel.dllÎÄ¼şµ½SandboxÎÄ¼ş¼ĞÏÂ
+		-- å¤åˆ¶ç”Ÿæˆçš„Nazel.dllæ–‡ä»¶åˆ°Sandboxæ–‡ä»¶å¤¹
 		postbuildcommands
 		{
 			("{COPYFILE} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
@@ -106,21 +100,17 @@ project "Nazel"		--NazelÏîÄ¿
 	filter "configurations:Debug"
 		defines "NZ_DEBUG"
 		runtime "Debug"
-		-- buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "NZ_Release"
 		runtime "Release"
-		--buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NZ_Dist"
 		runtime "Release"
-		--buildoptions "/MD"
 		optimize "On"
-
 
 project "Sandbox"
 	location "Sandbox"
@@ -163,17 +153,67 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "NZ_DEBUG"
 		runtime "Debug"
-		--buildoptions "/MDd"
 		symbols "On"
 	
 	filter "configurations:Release"
 		defines "NZ_Release"
-		--buildoptions "/MD"
 		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "NZ_Dist"
 		runtime "Release"
-		--buildoptions "/MD"
+		optimize "On"
+
+project "NazelEditor"
+	location "NazelEditor"
+	kind "ConsoleApp"
+	cppdialect "C++17"
+	buildoptions "/utf-8"
+	language "C++"
+	staticruntime "on"	
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs
+	{
+		"Nazel/ThirdParty/spdlog/include",
+		"Nazel/src",
+		"%{IncludeDir.glm}",
+		"Nazel/ThirdParty"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		links
+		{
+			"Nazel"
+		}
+
+		defines
+		{
+			"NZ_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "NZ_DEBUG"
+		runtime "Debug"
+		symbols "On"
+	
+	filter "configurations:Release"
+		defines "NZ_Release"
+		runtime "Release"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "NZ_Dist"
+		runtime "Release"
 		optimize "On"

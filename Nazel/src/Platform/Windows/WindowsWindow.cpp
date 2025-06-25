@@ -10,8 +10,8 @@
 namespace Nazel {
 static uint8_t s_GLFWWindowCount = 0;
 
-Window* Window::Create(const WindowProps& props) {
-	return new WindowsWindow(props);
+Scope<Window> Window::Create(const WindowProps& props) {
+	return CreateScpoe<WindowsWindow>(props);
 }
 
 WindowsWindow::WindowsWindow(const WindowProps& props) {
